@@ -23,7 +23,7 @@ public class HttpManager {
         String line = bReader.readLine();
         StringBuilder builder = new StringBuilder();
         while (line != null) {
-            builder.append(line);
+            builder.append(line).append("\n");
             line = bReader.readLine();
         }
         return builder.toString();
