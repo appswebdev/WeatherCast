@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         getSupportFragmentManager().beginTransaction().
-                replace(R.id.container, new WeatherFragment()).
+                replace(R.id.container, WeatherFragment.
+                        newInstance("BeerSheva")).
                 commit();
 
 
@@ -78,17 +79,38 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            getSupportFragmentManager().beginTransaction().
+                    replace(R.id.container, WeatherFragment.
+                            newInstance("BeerSheva")).
+                    commit();
         } else if (id == R.id.nav_gallery) {
+            getSupportFragmentManager().beginTransaction().
+                    replace(R.id.container, WeatherFragment.
+                            newInstance("Ashdod")).
+                    commit();
 
         } else if (id == R.id.nav_slideshow) {
-
+            getSupportFragmentManager().beginTransaction().
+                    replace(R.id.container, WeatherFragment.
+                            newInstance("Jerusalem")).
+                    commit();
         } else if (id == R.id.nav_manage) {
+            getSupportFragmentManager().beginTransaction().
+                    replace(R.id.container, WeatherFragment.
+                            newInstance("Ashkelon")).
+                    commit();
 
         } else if (id == R.id.nav_share) {
+            getSupportFragmentManager().beginTransaction().
+                    replace(R.id.container, WeatherFragment.
+                            newInstance("Eilat")).
+                    commit();
 
         } else if (id == R.id.nav_send) {
-
+            getSupportFragmentManager().beginTransaction().
+                    replace(R.id.container, WeatherFragment.
+                            newInstance("AKKO")).
+                    commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

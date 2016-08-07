@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import college.edu.tomer.weathercast.wheather.WheatherData;
 
@@ -39,7 +40,77 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
         holder.tvDescription.setText(dataByPosition.getDescription());
         holder.tvTemp.setText(dataByPosition.getTemp());
         holder.tvTempMin.setText(dataByPosition.getMinTemp());
-        holder.tvTime.setText(dataByPosition.getTimeStamp() + "");
+
+        Date d = new Date(dataByPosition.getTimeStamp()*1000);
+        holder.tvTime.setText(d.toString());
+
+        int icon = R.drawable.icon_01d;
+
+        switch (dataByPosition.getImageID()){
+            case "01d":
+                icon = R.drawable.icon_01d;
+                break;
+            case "01n":
+                icon = R.drawable.icon_01n;
+                break;
+
+            case "02d":
+                icon = R.drawable.icon_02d;
+                break;
+            case "02n":
+                icon = R.drawable.icon_02n;
+                break;
+
+            case "03d":
+                icon = R.drawable.icon_03d;
+                break;
+            case "03n":
+                icon = R.drawable.icon_03n;
+                break;
+
+            case "04d":
+                icon = R.drawable.icon_04d;
+                break;
+            case "04n":
+                icon = R.drawable.icon_04n;
+                break;
+
+            case "09d":
+                icon = R.drawable.icon_09d;
+                break;
+            case "09n":
+                icon = R.drawable.icon_09n;
+                break;
+
+            case "10d":
+                icon = R.drawable.icon_10d;
+                break;
+            case "10n":
+                icon = R.drawable.icon_10n;
+                break;
+
+            case "11d":
+                icon = R.drawable.icon_11d;
+                break;
+            case "11n":
+                icon = R.drawable.icon_11n;
+                break;
+
+            case "13d":
+                icon = R.drawable.icon_13d;
+                break;
+            case "13n":
+                icon = R.drawable.icon_13n;
+                break;
+
+            case "50d":
+                icon = R.drawable.icon_50d;
+                break;
+            case "50n":
+                icon = R.drawable.icon_50n;
+                break;
+        }
+        holder.ivWeather.setImageResource(icon);
     }
     public int getItemCount() {
         return weatherList.size();

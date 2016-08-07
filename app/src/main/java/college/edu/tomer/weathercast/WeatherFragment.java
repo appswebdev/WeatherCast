@@ -17,21 +17,28 @@ import college.edu.tomer.weathercast.wheather.WheatherService;
 public class WeatherFragment extends Fragment {
 
 
-    public WeatherFragment() {
-        // Required empty public constructor
+    public static WeatherFragment newInstance(String city) {
+        Bundle args = new Bundle();
+        args.putString("City", city);
+        WeatherFragment fragment = new WeatherFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        Bundle arguments = getArguments();
+        String city = arguments.getString("City");
+
         View v = inflater.inflate(R.layout.fragment_weather, container, false);
         RecyclerView rvWeather =
                 (RecyclerView) v.findViewById(R.id.weatherRecycler);
 
         new WheatherService(
-                "Beersheva", rvWeather, getContext()
+                city, rvWeather, getContext()
         ).execute();
 
         return v;
