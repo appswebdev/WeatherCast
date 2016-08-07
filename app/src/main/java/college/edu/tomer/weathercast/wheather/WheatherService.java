@@ -1,16 +1,33 @@
 package college.edu.tomer.weathercast.wheather;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import college.edu.tomer.weathercast.WeatherAdapter;
+
 /**
  * Created by master on 03/08/16.
  */
 public class WheatherService extends AsyncTask {
+
+    String city;
+    RecyclerView rvWeather;
+    Context context;
+
+    //Constructor
+    public WheatherService(String city, RecyclerView rvWeather, Context context) {
+        this.city = city;
+        this.rvWeather = rvWeather;
+        this.context = context;
+    }
+
     @Override
     protected Object doInBackground(Object[] params) {
         //Code that runs in a background thread.
@@ -18,7 +35,7 @@ public class WheatherService extends AsyncTask {
         ArrayList<WheatherData> wheatherDataArrayList = new ArrayList<>();
 
         try {
-            json = HttpManager.downloadUrl("http://api.openweathermap.org/data/2.5/forecast?mode=json&appid=fb69467683eea597ea58d93b606f2df6&units=metric&q=beersheva,il");
+            json = HttpManager.downloadUrl("http://api.openweathermap.org/data/2.5/forecast?mode=json&appid=fb69467683eea597ea58d93b606f2df6&units=metric&q=" + city + ",il");
 
 
             JSONObject jsonObject = new JSONObject(json);
@@ -49,7 +66,6 @@ public class WheatherService extends AsyncTask {
         }
         return wheatherDataArrayList;
     }
-
     //The object is returned from doInBackground
     @Override
     protected void onPostExecute(Object o) {
@@ -57,5 +73,10 @@ public class WheatherService extends AsyncTask {
         System.out.println(o);
         ArrayList<WheatherData> data = (ArrayList<WheatherData>) o;
 
+        WeatherAdapter adapter = new WeatherAdapter(data, context);
+        rvWeather.setAdapter(adapter);
+        rvWeather.setLayoutManager(
+                new LinearLayoutManager(context)
+        );
     }
 }

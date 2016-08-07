@@ -5,14 +5,14 @@ package college.edu.tomer.weathercast.wheather;
  */
 public class WheatherData {
     private String temp;
-    private String maxTemp;
+    private String minTemp;
     private String description;
     private String imageID;
     private long timeStamp;
 
     public WheatherData(String temp, String maxTemp, String description, String imageID, long timeStamp) {
         this.temp = temp;
-        this.maxTemp = maxTemp;
+        this.minTemp = maxTemp;
         this.description = description;
         this.imageID = imageID;
         this.timeStamp = timeStamp;
@@ -26,12 +26,12 @@ public class WheatherData {
         this.temp = temp;
     }
 
-    public String getMaxTemp() {
-        return maxTemp;
+    public String getMinTemp() {
+        return minTemp;
     }
 
-    public void setMaxTemp(String maxTemp) {
-        this.maxTemp = maxTemp;
+    public void setMinTemp(String minTemp) {
+        this.minTemp = minTemp;
     }
 
     public String getDescription() {
@@ -62,7 +62,7 @@ public class WheatherData {
     public String toString() {
         return "WheatherData{" +
                 "temp='" + temp + '\'' +
-                ", maxTemp='" + maxTemp + '\'' +
+                ", minTemp='" + minTemp + '\'' +
                 ", description='" + description + '\'' +
                 ", imageID='" + imageID + '\'' +
                 ", timeStamp=" + timeStamp +
